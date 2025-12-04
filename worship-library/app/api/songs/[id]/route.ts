@@ -22,9 +22,12 @@ export async function GET(
         return NextResponse.json({ error: 'Failed to fetch song' }, { status: 500 });
     }
 }
-export async function PUT(req: NextRequest, context: { params: { id: string } }) {
+export async function PUT(
+    req: NextRequest,
+    context: { params: Promise<{ id: string }> } // ✅ Змінили тип на Promise
+) {
     try {
-        const params = await context.params; // потрібно розпакувати, якщо Promise
+        const params = await context.params;
         const songId = Number(params.id);
 
         if (isNaN(songId)) {
