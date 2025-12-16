@@ -15,7 +15,7 @@ export default async function SongPage({params}: {
             <div className="flex-col mx-auto py-5 px-2 max-w-[900px]">
                 <div className={cn("sticky top-0 z-10")}>
                     <div>
-                        <AudioPlayer title={song.songTitle} src={songAudioUrl}/>
+                        <AudioPlayer title={song.songTitle as string} src={songAudioUrl as string} />
                     </div>
                 </div>
                 <div className={cn("py-10 z-10 px-2")}>
