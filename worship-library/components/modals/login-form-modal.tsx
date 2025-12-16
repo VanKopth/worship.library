@@ -18,9 +18,6 @@ export const Login: React.FC<Props> = ({ className }) => {
         return (
             <Dialog open={true} onOpenChange={() => router.back()}>
                    <DialogContent className={cn("m-auto w-[400px] max-w-[90%] h-[430px] max-h-1/2 bg-white overflow-hidden", className)}>
-                       <div className={cn("pointer-events-none absolute top-0 left-0 w-full\n" +
-                           "         text-center text-sm font-bold tracking-[0.35em]\n" +
-                           "         text-black/20 select-none whitespace-nowrap\n")}>orship worship worship worship worship worship worship</div>
                        <DialogTitle className={cn("m-auto text-3xl font-light")}>Library</DialogTitle>
                        <form>
                            <div className="flex flex-col gap-6">
@@ -43,9 +40,6 @@ export const Login: React.FC<Props> = ({ className }) => {
                                </Button>
                            </div>
                        </form>
-                       <div className={cn("pointer-events-none absolute bottom-0.5 left-0 w-full\n" +
-                           "         text-center text-sm font-bold tracking-[0.35em]\n" +
-                           "         text-black/20 select-none whitespace-nowrap\n")}>rship worship worship worship worship worship worship</div>
                    </DialogContent>
             </Dialog>
         )
