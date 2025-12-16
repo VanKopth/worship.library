@@ -14,7 +14,23 @@ export const getById = async (id: number) : Promise<Song> => {
     console.log(ApiRoutes.SONGS, id);
     return (await axiosInstance.get<Song>(`${ApiRoutes.SONGS}/${id}`)).data;
 }
-export const updateSong = async (id: number, data: { songText: string; songTitle?: string }) => {
+export const updateSong = async (id: number, data: { songTitle?: string, songText: string;}) => {
     await axiosInstance.put(`${ApiRoutes.SONGS}/${id}`, data);
+};
+
+export const uploadAudio = async (songId: number, file: File) => {
+    if (!songId) {
+        throw new Error('Song ID is required');
+    }
+    
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('songId', songId.toString());
+    
+    console.log('Uploading to:', `${ApiRoutes.SONGS}/upload-audio`);
+    console.log('Song ID:', songId);
+
+    return (await axiosInstance.post(`${ApiRoutes.SONGS}/upload-audio`, formData)).data;
+
 };
 

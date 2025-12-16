@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.1.0",
   "engineVersion": "ab635e6b9d606fa5c8fb8b1a7f909c3c3c1c98ba",
   "activeProvider": "postgresql",
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"./generated\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel User {\n  id Int @id @default(autoincrement())\n\n  login    String\n  password String\n\n  createdAt DateTime? @default(now())\n}\n\nmodel Song {\n  id Int @id @default(autoincrement())\n\n  songTitle String\n  songText  String\n  audioUrl  String?\n\n  createdAt DateTime? @default(now())\n}\n",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"./generated\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel User {\n  id Int @id @default(autoincrement())\n\n  login    String\n  password String\n\n  createdAt DateTime? @default(now())\n}\n\nmodel Song {\n  id Int @id @default(autoincrement())\n\n  songTitle String?\n  songText  String\n  audioUrl  String?\n\n  createdAt DateTime? @default(now())\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},

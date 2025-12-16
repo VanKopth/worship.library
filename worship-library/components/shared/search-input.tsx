@@ -13,7 +13,7 @@ interface Props {
 
 export const SearchInput: React.FC<Props> = ({ className }) => {
     const [searchQuery, setSearchQuery] = React.useState('');
-    const [isFocused, setIsFocused] = React.useState(false);
+    const [isFocused] = React.useState(false);
     const { setSearchResults, setIsSearching } = useSearch();
 
     const debouncedSearch = useDebouncedCallback((query: string) => {
@@ -40,8 +40,6 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
                 className={cn('w-full h-12 border-0 focus-visible:ring-0 focus-visible:ring-offset-0 backdrop-blur-xs backdrop-saturation-[200%] shadow-sm bg-[#000000]/5 transition-all duration-300 ease-in-out', isFocused ? 'scale-105': 'scale-100')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
             />
         </div>
     );

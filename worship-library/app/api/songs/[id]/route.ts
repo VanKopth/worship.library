@@ -41,7 +41,10 @@ export async function PUT(
 
         const updatedSong = await prisma.song.update({
             where: { id: songId },
-            data: { songText: body.songText },
+            data: { 
+                songTitle: body.songTitle,
+                songText: body.songText,
+            },
         });
 
         return NextResponse.json(updatedSong);

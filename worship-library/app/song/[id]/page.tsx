@@ -1,31 +1,26 @@
 ﻿import { Api } from "@/services/api-client";
-import {Container} from "@/components/shared";
+import {SongBody,Container} from "@/components/shared";
 import {cn} from "@/lib/utils";
-import {InputGroup, InputGroupTextarea, AudioPlayer, SongEditor} from "@/components/ui";
-import SongEditorWrapper from "@/app/song/[id]/SongEditorWrapper";
+import {AudioPlayer} from "@/components/ui";
 
 
 export default async function SongPage({params}: {
-    params: Promise<{ id: string }>
+    params: { id: string }
 }) {
     const { id } = await params;
     const song = await Api.songs.getById(Number(id));
+    const  songAudioUrl = song.audioUrl; 
     
     return (
-        <Container className={cn("flex mx-auto py-1 px-5 gap-4 max-w-[900px]")}>
-            <div className="mx-auto py-20 ">
-                <div className={cn("sticky top-1 z-10")}>
-                    <div className={cn('py-1')}>
-                        {song.audioUrl && (
-                            <AudioPlayer title={song.songTitle} src={song.audioUrl}/>
-                        )}
+            <div className="flex-col mx-auto py-5 px-2 max-w-[900px]">
+                <div className={cn("sticky top-0 z-10")}>
+                    <div>
+                        <AudioPlayer title={song.songTitle} src={songAudioUrl}/>
                     </div>
                 </div>
-                <div className={cn('flex m-auto py-4')}>
-                    <SongEditorWrapper  song={song} />
+                <div className={cn("py-10 z-10 px-2")}>
+                    <SongBody songBody={song.songText}/>
                 </div>
             </div>
-        </Container>
-        
     );
 }

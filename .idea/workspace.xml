@@ -5,58 +5,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="46ea3c0e-652c-4456-b777-695da1daf8a3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/app/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/app/globals.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/app/layout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/app/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/components.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/components/ui/button.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/components/ui/input-group.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/components/ui/input.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/components/ui/progress.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/components/ui/slider.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/components/ui/table.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/components/ui/textarea.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/eslint.config.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/lib/generated/prisma/browser.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/lib/generated/prisma/client.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/lib/generated/prisma/commonInputTypes.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/lib/generated/prisma/enums.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/lib/generated/prisma/internal/class.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/lib/generated/prisma/internal/prismaNamespace.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/lib/generated/prisma/internal/prismaNamespaceBrowser.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/lib/generated/prisma/models.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/lib/generated/prisma/models/Song.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/lib/generated/prisma/models/User.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/lib/utils.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/next.config.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/postcss.config.mjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/prisma-client.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/prisma.config.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/prisma/generated/browser.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/prisma/generated/client.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/prisma/generated/commonInputTypes.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/prisma/generated/enums.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/prisma/generated/internal/class.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/prisma/generated/internal/prismaNamespace.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/prisma/generated/internal/prismaNamespaceBrowser.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/prisma/generated/models.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/prisma/generated/models/Song.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/prisma/generated/models/User.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/prisma/schema.prisma" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/public/file.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/public/globe.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/public/next.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/public/vercel.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/public/window.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/worship-library/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/worship-library/app/@auth/(.)login/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/worship-library/app/@auth/[...catchAll]/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/worship-library/app/@auth/default.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/worship-library/app/@auth/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/worship-library/app/login/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/worship-library/app/song/upsert/[id]/SongEditorWrapper.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/worship-library/app/song/upsert/[id]/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/worship-library/components/modals/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/worship-library/components/modals/login-form-modal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/worship-library/components/shared/songBody.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/worship-library/lib/supabase.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/worship-library/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/worship-library/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worship-library/app/api/songs/[id]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/worship-library/app/api/songs/[id]/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worship-library/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/worship-library/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worship-library/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/worship-library/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worship-library/app/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/worship-library/app/song/[id]/SongEditorWrapper.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/worship-library/app/song/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/worship-library/app/song/[id]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worship-library/components/shared/header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/worship-library/components/shared/header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worship-library/components/shared/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/worship-library/components/shared/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worship-library/components/shared/search-input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/worship-library/components/shared/search-input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worship-library/components/ui/audioPlayer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/worship-library/components/ui/audioPlayer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worship-library/components/ui/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/worship-library/components/ui/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worship-library/components/ui/songEditor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/worship-library/components/ui/songEditor.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worship-library/lib/prisma.ts" beforeDir="false" afterPath="$PROJECT_DIR$/worship-library/lib/prisma.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worship-library/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/worship-library/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worship-library/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/worship-library/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worship-library/prisma-client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/worship-library/prisma-client.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worship-library/prisma/generated/internal/class.ts" beforeDir="false" afterPath="$PROJECT_DIR$/worship-library/prisma/generated/internal/class.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worship-library/prisma/generated/models/Song.ts" beforeDir="false" afterPath="$PROJECT_DIR$/worship-library/prisma/generated/models/Song.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worship-library/services/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/worship-library/services/constants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worship-library/services/songs.ts" beforeDir="false" afterPath="$PROJECT_DIR$/worship-library/services/songs.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,6 +74,9 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/worship-library/package-lock.json" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://E:/worship.library/worship-library/package-lock.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://E:/worship.library/worship-library/package-lock.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://E:/worship.library/worship-library/package.json" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -210,6 +195,18 @@
       <workItem from="1764701513233" duration="2240000" />
       <workItem from="1764715380036" duration="7000" />
       <workItem from="1764715667826" duration="62207000" />
+      <workItem from="1765324073828" duration="9548000" />
+      <workItem from="1765812628951" duration="4272000" />
+      <workItem from="1765817849558" duration="1837000" />
+      <workItem from="1765820637973" duration="387000" />
+      <workItem from="1765821067380" duration="17859000" />
+      <workItem from="1765861632155" duration="3518000" />
+      <workItem from="1765893270185" duration="1755000" />
+      <workItem from="1765895902693" duration="127000" />
+      <workItem from="1765896058294" duration="97000" />
+      <workItem from="1765896192176" duration="86000" />
+      <workItem from="1765896300806" duration="818000" />
+      <workItem from="1765897499061" duration="9305000" />
     </task>
     <task id="LOCAL-00001" summary="Main">
       <option name="closed" value="true" />

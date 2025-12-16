@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useState, useEffect } from "react";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
@@ -22,16 +22,16 @@ export default function Home() {
     const displaySongs = isSearching ? searchResults : allSongs;
 
     return (
-        <div className={cn("flex flex-col mx-auto py-20 gap-4 max-w-[900px]")}>
+        <div className={cn("flex flex-col mx-auto py-20 gap-4 w-[900px] max-w-[90%]")}>
             <div className={cn("shadow-2xl")}>
-                <div className="fixed top-0 left-0 right-0 h-30 bg-gradient-to-b from-white via-white/90 pointer-events-none to-transparent z-9" />
+                <div className="fixed top-0 left-0 right-0 h-30 bg-gradient-to-b from-white via-white/90 pointer-events-none to-transparent z-10" />
                 <Table>
                     <TableBody>
                         { displaySongs.map((song) => (
                             <TableRow key={song.id}>
                                 <TableCell className="font-medium">
                                     <Link
-                                        href={`/song/${song.id}`}
+                                        href={`/Song/${song.id}`}
                                         className={cn("flex items-center justify-center py-2")}
                                     >
                                         {song.songTitle}

@@ -1,64 +1,77 @@
-﻿'use client';
+﻿"use client";
 
 import { useRef, useState, useEffect } from "react";
-import { Slider, SliderPrimitive} from "@/components/ui/slider";
-import {Pause, Play} from "lucide-react"; // ShadCN Slider
-
+import { Slider, SliderPrimitive } from "@/components/ui/slider";
+import { Pause, Play } from "lucide-react";
 
 interface AudioPlayerProps {
     title: string;
     src: string;
 }
 
-function AudioPlayer({title, src }: AudioPlayerProps) {
+export function AudioPlayer({ title, src }: AudioPlayerProps) {
     const audioRef = useRef<HTMLAudioElement>(null);
+
+    const [mounted, setMounted] = useState(false);
     const [isPlaying, setIsPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
     const [duration, setDuration] = useState(0);
 
-    // Play / Pause
-    const togglePlay = () => {
-        if (!audioRef.current) return;
-        if (isPlaying) {
-            audioRef.current.pause();
-        } else {
-            audioRef.current.play();
-        }
-        setIsPlaying(!isPlaying);
-    };
-
-    // Update progress
+    /** Mount guard — ключ до відсутності hydration warning */
     useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    /** Audio listeners */
+    useEffect(() => {
+        if (!mounted) return;
+
         const audio = audioRef.current;
         if (!audio) return;
 
-        const updateProgress = () => {
+        const handleTimeUpdate = () => {
             setProgress(audio.currentTime);
         };
 
-        const setAudioDuration = () => {
+        const handleLoadedMetadata = () => {
             setDuration(audio.duration || 0);
         };
 
-        audio.addEventListener("timeupdate", updateProgress);
-        audio.addEventListener("loadedmetadata", setAudioDuration);
+        audio.addEventListener("timeupdate", handleTimeUpdate);
+        audio.addEventListener("loadedmetadata", handleLoadedMetadata);
 
         return () => {
-            audio.removeEventListener("timeupdate", updateProgress);
-            audio.removeEventListener("loadedmetadata", setAudioDuration);
+            audio.removeEventListener("timeupdate", handleTimeUpdate);
+            audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
         };
-    }, []);
+    }, [mounted]);
 
-    // Seek audio
-    const handleSeek = (values: number[]) => {
-        if (audioRef.current) {
-            audioRef.current.currentTime = values[0];
-            setProgress(values[0]);
+    /** Play / Pause */
+    const togglePlay = () => {
+        const audio = audioRef.current;
+        if (!audio) return;
+
+        if (audio.paused) {
+            audio.play();
+            setIsPlaying(true);
+        } else {
+            audio.pause();
+            setIsPlaying(false);
         }
     };
 
-    // Format time
+    /** Seek */
+    const handleSeek = (values: number[]) => {
+        const audio = audioRef.current;
+        if (!audio) return;
+
+        audio.currentTime = values[0];
+        setProgress(values[0]);
+    };
+
+    /** Time formatter */
     const formatTime = (time: number) => {
+        if (!time || Number.isNaN(time)) return "0:00";
         const minutes = Math.floor(time / 60);
         const seconds = Math.floor(time % 60)
             .toString()
@@ -66,24 +79,45 @@ function AudioPlayer({title, src }: AudioPlayerProps) {
         return `${minutes}:${seconds}`;
     };
 
-    return (
-        <div className="flex  flex-col items-center w-full max-w-900px pb-5 px-4 text-black rounded-lg shadow-2xl">
-            <h1 className="text-3xl font-bold mb-4">{title}</h1>
-            <audio ref={audioRef} src={src} />
+    /** ⛔️ До mount — стабільний SSR HTML */
+    if (!mounted) {
+        return (
+            <div className="w-full max-w-[900px] mx-auto px-4 py-6 rounded-b-xl shadow-2xl bg-white/50 backdrop-blur-md">
+                <h1 className="text-3xl font-extrabold text-center">{title}</h1>
+            </div>
+        );
+    }
 
-            <button onClick={togglePlay} className="px-4 py-0 rounded-lg cursor-pointer">
-                {isPlaying ? <Pause size={20} color="#575757" strokeWidth={1} absoluteStrokeWidth /> : 
-                <Play size={20} color="#575757" strokeWidth={1} absoluteStrokeWidth />}
-            </button>
+    /** ✅ Client-only render */
+    return (
+        <div className="w-full max-w-[900px] mx-auto px-4 py-6 rounded-b-xl shadow-2xl bg-white/50 backdrop-blur-md backdrop-saturate-150">
+            <audio ref={audioRef} src={src} preload="metadata" />
+
+            <div className="flex items-center justify-center gap-4 mb-4">
+                <h1 className="text-2xl font-extrabold">{title}</h1>
+                <button
+                    onClick={togglePlay}
+                    className="p-2 rounded-lg hover:bg-black/5 transition"
+                    aria-label={isPlaying ? "Pause" : "Play"}
+                >
+                    {isPlaying ? (
+                        <Pause size={36} color="#575757" strokeWidth={1.5} />
+                    ) : (
+                        <Play size={36} color="#575757" strokeWidth={1.5} />
+                    )}
+                </button>
+
+            </div>
 
             <div className="w-full">
-                <div className="flex justify-between text-xs mb-2 cursor-pointer">
+                <div className="flex justify-between text-xs mb-2">
                     <span>{formatTime(progress)}</span>
                     <span>{formatTime(duration)}</span>
                 </div>
+
                 <Slider
-                    value={[progress]}     // <-- важливо: value, а не defaultValue
-                    max={duration}
+                    value={[progress]}
+                    max={duration || 0}
                     onValueChange={handleSeek}
                     className="w-full cursor-pointer"
                 >
@@ -96,4 +130,3 @@ function AudioPlayer({title, src }: AudioPlayerProps) {
         </div>
     );
 }
-export {AudioPlayer};
