@@ -1,7 +1,7 @@
 import { Api } from "@/services/api-client";
 import {Container} from "@/components/shared";
 import {cn} from "@/lib/utils";
-import SongEditorWrapper from "@/app/Song/Upsert/[id]/SongEditorWrapper";
+import SongEditorWrapper from "./SongEditorWrapper";
 
 
 export default async function SongPage({params}: {
