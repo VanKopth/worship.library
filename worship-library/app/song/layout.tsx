@@ -18,7 +18,7 @@ children,
   return (
       <main className="min-h-screen">
           <SearchProvider>
-              <Header isSerachBarActive={false}/>
+              <Header isSearchBarActive={false}/>
               {children}
           </SearchProvider>
       </main>
