@@ -17,7 +17,7 @@ export const Login: React.FC<Props> = ({ className }) => {
         
         return (
             <Dialog open={true} onOpenChange={() => router.back()}>
-                   <DialogContent className={cn("m-auto w-[400px] max-w-[90%] h-[430px] max-h-1/2 bg-white overflow-hidden", className)}>
+                   <DialogContent className={cn("mx-auto w-[400px] max-w-[90%] h-[430px] max-h-1/2 bg-white overflow-hidden", className)}>
                        <DialogTitle className={cn("m-auto text-3xl font-light")}>Library</DialogTitle>
                        <form>
                            <div className="flex flex-col gap-6">

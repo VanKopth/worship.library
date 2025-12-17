@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import { Slider, SliderPrimitive } from "@/components/ui/slider";
 import { Pause, Play } from "lucide-react";
+import {cn} from "@/lib/utils";
 
 interface AudioPlayerProps {
     title: string;
@@ -12,19 +13,16 @@ interface AudioPlayerProps {
 export function AudioPlayer({ title, src }: AudioPlayerProps) {
     const audioRef = useRef<HTMLAudioElement>(null);
 
-    const [mounted, setMounted] = useState(false);
+    const whithMusic =Boolean(src); 
     const [isPlaying, setIsPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
     const [duration, setDuration] = useState(0);
 
-    /** Mount guard — ключ до відсутності hydration warning */
-    useEffect(() => {
-        setMounted(true);
-    }, []);
+
 
     /** Audio listeners */
     useEffect(() => {
-        if (!mounted) return;
+        if (!whithMusic) return;
 
         const audio = audioRef.current;
         if (!audio) return;
@@ -44,9 +42,8 @@ export function AudioPlayer({ title, src }: AudioPlayerProps) {
             audio.removeEventListener("timeupdate", handleTimeUpdate);
             audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
         };
-    }, [mounted]);
+    }, [whithMusic]);
 
-    /** Play / Pause */
     const togglePlay = () => {
         const audio = audioRef.current;
         if (!audio) return;
@@ -60,7 +57,6 @@ export function AudioPlayer({ title, src }: AudioPlayerProps) {
         }
     };
 
-    /** Seek */
     const handleSeek = (values: number[]) => {
         const audio = audioRef.current;
         if (!audio) return;
@@ -69,7 +65,6 @@ export function AudioPlayer({ title, src }: AudioPlayerProps) {
         setProgress(values[0]);
     };
 
-    /** Time formatter */
     const formatTime = (time: number) => {
         if (!time || Number.isNaN(time)) return "0:00";
         const minutes = Math.floor(time / 60);
@@ -79,18 +74,16 @@ export function AudioPlayer({ title, src }: AudioPlayerProps) {
         return `${minutes}:${seconds}`;
     };
 
-    /** ⛔️ До mount — стабільний SSR HTML */
-    if (!mounted) {
+    if (!whithMusic) {
         return (
-            <div className="w-full max-w-[900px] mx-auto px-4 py-6 rounded-b-xl shadow-2xl bg-white/50 backdrop-blur-md">
+            <div className="w-full max-w-[900px] mx-auto px-4 py-6 rounded-xl shadow-2xl bg-white/20 backdrop-blur-md backdrop-saturate-150">
                 <h1 className="text-3xl font-extrabold text-center">{title}</h1>
             </div>
         );
     }
 
-    /** ✅ Client-only render */
     return (
-        <div className="w-full max-w-[900px] mx-auto px-4 py-6 rounded-b-xl shadow-2xl bg-white/50 backdrop-blur-md backdrop-saturate-150">
+        <div className="w-full max-w-[900px] mx-auto px-4 py-6 rounded-xl shadow-2xl bg-[#ededed]/50 backdrop-blur-xs backdrop-saturate-200">
             <audio ref={audioRef} src={src} preload="metadata" />
 
             <div className="flex items-center justify-center gap-4 mb-4">
@@ -121,8 +114,8 @@ export function AudioPlayer({ title, src }: AudioPlayerProps) {
                     onValueChange={handleSeek}
                     className="w-full cursor-pointer"
                 >
-                    <SliderPrimitive.Track>
-                        <SliderPrimitive.Range className="bg-blue-600" />
+                    <SliderPrimitive.Track >
+                        <SliderPrimitive.Range className="bg-gray-300" />
                     </SliderPrimitive.Track>
                     <SliderPrimitive.Thumb />
                 </Slider>

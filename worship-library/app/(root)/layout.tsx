@@ -16,7 +16,7 @@ export default function HomePageLayout({
   return (
       <main className="min-h-screen antialiased">
         <SearchProvider>
-          <Header isSerachBarActive={true} className="sticky top-15 z-10" />
+          <Header isSearchBarActive={true} className="sticky top-15 z-10" />
           {children}
         </SearchProvider>
       </main>

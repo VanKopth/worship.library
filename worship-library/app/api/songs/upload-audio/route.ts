@@ -42,14 +42,12 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Convert file to buffer
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
     let url: string;
     let key: string;
 
-    // Check if R2 is configured
     const isR2Configured = process.env.CLOUDFLARE_ACCESS_KEY_ID && 
                           process.env.CLOUDFLARE_SECRET_ACCESS_KEY && 
                           process.env.CLOUDFLARE_BUCKET_NAME &&
@@ -67,37 +65,28 @@ export async function POST(req: NextRequest) {
         url = publicUrl;
         key = result.key;
         
-        console.log('Public URL:', publicUrl);
+        await prisma.song.update({
+          where: { id: parseInt(songId) },
+          data: { audioUrl: url },
+        });
+
+        return NextResponse.json({
+          success: true,
+          url,
+          key,
+        });
+        
+        console.log('Database updated successfully');
+        
       } catch (r2Error) {
-        console.error('R2 upload failed, falling back to local storage:', r2Error);
-        // Fall back to local storage if R2 fails
-        const localResult = await saveFileLocally(buffer, file.name);
-        url = localResult.url;
-        key = localResult.key;
+        console.error('R2 upload failed', r2Error);
       }
     } else {
       console.log('R2 not configured, using local storage');
-      // Save file locally if R2 is not configured
-      const localResult = await saveFileLocally(buffer, file.name);
-      url = localResult.url;
-      key = localResult.key;
+
     }
 
-    console.log('File saved:', url);
-
-    // Update song in database
-    await prisma.song.update({
-      where: { id: parseInt(songId) },
-      data: { audioUrl: url },
-    });
-
-    console.log('Database updated successfully');
-
-    return NextResponse.json({
-      success: true,
-      url,
-      key,
-    });
+    
   } catch (error) {
     console.error("Upload error:", error);
     return NextResponse.json(
@@ -105,24 +94,4 @@ export async function POST(req: NextRequest) {
       { status: 500 }
     );
   }
-}
-
-// Helper function to save file locally
-async function saveFileLocally(buffer: Buffer, fileName: string): Promise<{ url: string; key: string }> {
-  const timestamp = Date.now();
-  const sanitizedFileName = fileName.replace(/[^a-zA-Z0-9.-]/g, "_");
-  const key = `${timestamp}-${sanitizedFileName}`;
-  
-  // Create uploads directory if it doesn't exist
-  const uploadsDir = path.join(process.cwd(), 'public', 'uploads', 'audio');
-  await mkdir(uploadsDir, { recursive: true });
-  
-  // Save file
-  const filePath = path.join(uploadsDir, key);
-  await writeFile(filePath, buffer);
-  
-  // Return public URL
-  const url = `/uploads/audio/${key}`;
-  
-  return { url, key };
 }

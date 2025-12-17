@@ -24,11 +24,10 @@ export interface UploadResult {
 export async function uploadAudioToR2(
   file: Buffer,
   fileName: string,
-  contentType: string = "audio/mpeg"
+  contentType: string = "audio/mp3"
 ): Promise<UploadResult> {
-  const timestamp = Date.now();
-  const sanitizedFileName = fileName.replace(/[^a-zA-Z0-9.-]/g, "_");
-  const key = `audio/${timestamp}-${sanitizedFileName}`;
+  const sanitizedFileName = sanitizeFileName(fileName);
+  const key = `audio/${sanitizedFileName}`;
 
   const command = new PutObjectCommand({
     Bucket: BUCKET_NAME,
@@ -56,15 +55,29 @@ export async function deleteAudioFromR2(key: string): Promise<void> {
 
   await r2Client.send(command);
 }
-
-/**
- * Generate presigned URL for temporary access
- */
-export async function getPresignedUrl(key: string, expiresIn: number = 3600): Promise<string> {
-  const command = new GetObjectCommand({
-    Bucket: BUCKET_NAME,
-    Key: key,
-  });
-
-  return await getSignedUrl(r2Client, command, { expiresIn });
+function sanitizeFileName(fileName: string): string {
+  return transliterate(fileName)
+      .replace(/\s+/g, "-")          // пробіли → дефіси
+      .replace(/[^a-z0-9.-]/g, "")   // прибрати все зайве
+      .replace(/-+/g, "-")           // кілька дефісів → один
+      .replace(/^-|-$/g, "");        // обрізати дефіси з країв
 }
+
+function transliterate(fileName: string): string {
+  const map: Record<string, string> = {
+    а: "a", б: "b", в: "v", г: "h", ґ: "g", д: "d", е: "e", є: "ye",
+    ж: "zh", з: "z", и: "y", і: "i", ї: "yi", й: "y",
+    к: "k", л: "l", м: "m", н: "n", о: "o", п: "p",
+    р: "r", с: "s", т: "t", у: "u", ф: "f", х: "kh",
+    ц: "ts", ч: "ch", ш: "sh", щ: "shch", ь: "",
+    ю: "yu", я: "ya",
+
+    ё: "yo", ы: "y", э: "e", ъ: ""
+  };
+  return fileName
+      .toLowerCase()
+      .split("")
+      .map(char => map[char] ?? char)
+      .join("");
+}
+
