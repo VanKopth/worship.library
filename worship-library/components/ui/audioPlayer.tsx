@@ -83,7 +83,7 @@ export function AudioPlayer({ title, src }: AudioPlayerProps) {
     }
 
     return (
-        <div className="w-full max-w-[900px] mx-auto px-4 py-6 rounded-xl shadow-2xl bg-[#ededed]/50 backdrop-blur-xs backdrop-saturate-200">
+        <div className="w-full max-w-[900px] mx-auto px-4 py-6 rounded-xl shadow-2xl bg-white/80 backdrop-blur-xs backdrop-saturate-200">
             <audio ref={audioRef} src={src} preload="metadata" />
 
             <div className="flex items-center justify-center gap-4 mb-4">
