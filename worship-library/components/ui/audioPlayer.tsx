@@ -76,34 +76,34 @@ export function AudioPlayer({ title, src }: AudioPlayerProps) {
 
     if (!whithMusic) {
         return (
-            <div className="w-full max-w-[900px] mx-auto px-4 py-6 rounded-xl shadow-2xl bg-white/20 backdrop-blur-md backdrop-saturate-150">
-                <h1 className="text-3xl font-extrabold text-center">{title}</h1>
+            <div className="w-full max-w-[900px] mx-auto px-4 py-6 rounded-md shadow-2xl bg-white/20 backdrop-blur-md backdrop-saturate-150">
+                <h1 className="text-2xl font-bold text-center">{title}</h1>
             </div>
         );
     }
 
     return (
-        <div className="w-full max-w-[900px] mx-auto px-4 py-6 rounded-xl shadow-2xl bg-white/80 backdrop-blur-xs backdrop-saturate-200">
+        <div className="w-full max-w-[900px] pt-2 mx-auto px-4 rounded-md shadow-md bg-white/80 backdrop-blur-xs backdrop-saturate-200">
             <audio ref={audioRef} src={src} preload="metadata" />
 
-            <div className="flex items-center justify-center gap-4 mb-4">
-                <h1 className="text-2xl font-extrabold">{title}</h1>
+            <div className="flex items-center justify-center gap-8 pt-2">
+                <h1 className="text-2xl md:text-2xl font-bold">{title}</h1>
                 <button
                     onClick={togglePlay}
                     className="p-2 rounded-lg hover:bg-black/5 transition"
                     aria-label={isPlaying ? "Pause" : "Play"}
                 >
                     {isPlaying ? (
-                        <Pause size={36} color="#575757" strokeWidth={1.5} />
+                        <Pause size={25} color="#575757" strokeWidth={1.5} fill={cn("black")}/>
                     ) : (
-                        <Play size={36} color="#575757" strokeWidth={1.5} />
+                        <Play size={25} color="#575757" strokeWidth={1.5} fill={cn("black")} />
                     )}
                 </button>
 
             </div>
 
-            <div className="w-full">
-                <div className="flex justify-between text-xs mb-2">
+            <div className="w-full pb-4">
+                <div className="flex justify-between text-xs text-center pb-2">
                     <span>{formatTime(progress)}</span>
                     <span>{formatTime(duration)}</span>
                 </div>

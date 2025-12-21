@@ -24,3 +24,21 @@ export {
 } from "./card";
 export {Label} from "./label";
 export {Dialog, DialogContent, DialogTitle} from "./dialog";
+export { Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "./popover"
+export {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuPortal,
+    DropdownMenuSeparator,
+    DropdownMenuShortcut,
+    DropdownMenuSub,
+    DropdownMenuSubContent,
+    DropdownMenuSubTrigger,
+    DropdownMenuTrigger,
+} from "./dropdown-menu"
